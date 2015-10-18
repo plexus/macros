@@ -3,7 +3,7 @@
 Macros for Ruby
 
 ``` ruby
-defmacro foo(param1_ast, param2_ast, &block_ast)
+defmacro foo(param1_ast, param2_ast, &block_ast) do
   build_new_ast(param1_ast, param2_ast, block_ast)
 end
 
