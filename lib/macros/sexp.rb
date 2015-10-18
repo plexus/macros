@@ -27,10 +27,16 @@ module Macros
     end
 
     def treemap(node, &block)
-      block.call(s(node.type, *node.children.map do |child|
-          next child unless child.is_a? AST::Node
-          block.call(treemap(child, &block))
-        end))
+      block.call(treemap_1(node, &block))
+    end
+
+    def treemap_1(node, &block)
+      s(node.type,
+        *node.children.map do |child|
+          next child unless child.is_a?(AST::Node)
+          treemap_1(block.call(child), &block)
+        end
+       )
     end
 
     def treefilter(node, &block)
@@ -52,7 +58,7 @@ module Macros
     end
 
     def seval(ast)
-      eval(Unparser.unparse(ast))
+      eval(Macros.unparse(ast))
     end
   end
 

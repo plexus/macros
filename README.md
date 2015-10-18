@@ -58,11 +58,33 @@ puts "foo"
 puts "bar"
 ```
 
-## Helpers
+## AST basics
+
+AST stands for Abstract Syntax Tree, a way of representing the structure of code
+as data.
 
 The macro will receive an instance of `Parser::AST::Node`, and must return an
-instance of `Parser::AST::Node`. Inside the macro definition the following
-convenience functions are available:
+instance of `Parser::AST::Node`. A `Node` consists of a `type` and zero or more
+`children`. You can use `Macros.parse` and `Macros.unparse` to experiment.
+
+For example
+
+```ruby
+obj.do_thing(x, y)
+```
+
+parses to
+
+```ruby
+s(:send,
+  s(:send, nil, :obj), :do_thing,
+  s(:send, nil, :x),
+  s(:send, nil, :y))
+```
+
+## Helpers
+
+Inside the macro definition the following convenience functions are available:
 
 ### `s(type, *children)`
 

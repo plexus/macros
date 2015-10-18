@@ -13,6 +13,10 @@ module Macros
     Parser::CurrentRuby.parse(string)
   end
 
+  def self.unparse(ast)
+    Unparser.unparse(ast)
+  end
+
   def self.require(path)
     @loader ||= Loader.new
     @loader.require(path)

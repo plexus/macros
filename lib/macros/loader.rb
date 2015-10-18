@@ -25,7 +25,7 @@ module Macros
       ast = Macros.parse pathname.read
       @macros.merge! @compiler.collect_defmacros(ast)
       rest_ast = @compiler.reject_defmacros(ast)
-      MAIN.instance_eval Unparser.unparse @expander.macroexpand(rest_ast)
+      MAIN.instance_eval Macros.unparse @expander.macroexpand(rest_ast)
     end
   end
 end
