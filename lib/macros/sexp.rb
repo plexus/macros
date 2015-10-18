@@ -18,7 +18,7 @@ module Macros
           node.children[spec]
         elsif spec.is_a?(Array)
           node.children.grep(AST::Node)
-            .map { |child| sfind(child, spec) }
+            .flat_map { |child| sfind(child, spec) }
             .reject { |child| child == NotFound }
         else
           return NotFound
