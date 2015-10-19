@@ -133,4 +133,4 @@ awkward, and macros can easily lead to a mess. You have been warned!
 
 © Arne Brasseur 2015
 
-Eclipse Public License
+Mozilla Public License Version 2.0. See LICENSE file.
